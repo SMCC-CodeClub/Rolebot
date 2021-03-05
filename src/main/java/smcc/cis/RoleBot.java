@@ -26,7 +26,7 @@ public class RoleBot  {
      * roles is a map that connects server role names to the id's of those
      * roles on the discord server
      */
-    private static TreeMap<String, String> roles = new TreeMap<>();
+    private static TreeMap<String, String> roles = new TreeMap();
 
     /**
      * addRole() adds this user to the roles they requested
@@ -44,9 +44,7 @@ public class RoleBot  {
                 role.addUser(user);
                 event.getChannel().sendMessage("Role added!");
             }
-
         }
-
     }
     /**
      * removeRole() removes this user from the roles they requested
@@ -74,17 +72,19 @@ public class RoleBot  {
     public static void main(String[] args) {
         String token = null;
 
-        try{
+        try {
             Gson gson = new Gson();
             Reader reader = Files.newBufferedReader(Paths.get("config.json"));
             Map<?, ?> map = gson.fromJson(reader,Map.class );
-            for (Map.Entry<?, ?> entry : map.entrySet())
+            for (Map.Entry<?, ?> entry : map.entrySet()) {
                 token = entry.getValue().toString();
+            }
             reader.close();
             reader = Files.newBufferedReader(Paths.get("roles.json"));
             Map<?, ?> rolesIn = gson.fromJson(reader, Map.class);
-            rolesIn.forEach((key, value) ->
-                    roles.put(key.toString(), value.toString()));
+            rolesIn.forEach((key, value) -> {
+                    roles.put(key.toString(), value.toString());
+            });
             reader.close();
             DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
 
@@ -103,26 +103,11 @@ public class RoleBot  {
                             break;
                         default:
                             break;
-
                     }
-
                 }
             });
-        }catch(Exception ex){
+        } catch(Exception ex) {
             ex.printStackTrace();
         }
-
-//        String token = "Nzg0MTUwNTI3MjU1NzczMjQ0.X8lHFg.6B7hBkFRAt89eS_VTUAo65HgHu4";
-//        roles.put("CSCI110", 743796556024774797L);
-//        roles.put("CSCI160", 743796720114204692L);
-//        roles.put("CSCI250", 743797076814594108L);
-//        roles.put("CSCI290", 743796976960929852L);
-//        roles.put("CSCI296", 743797180523085905L);
-//        roles.put("alumni",  745010852499030096L);
-//        roles.put("MATH225", 817133489999577099L);
-
-
-
     }
 }
-
