@@ -174,6 +174,9 @@ public class RoleBot {
 					case "roll": // RollBot, get it? (I hate myself for this already) ~Alex
 						rollCommand(event, api);
 						break;
+					case "rps": // Rock, Paper, Scissors!
+						RockPaperScissors.command(argList, event, api);
+						break;
 					default:
 						break;
 					}
