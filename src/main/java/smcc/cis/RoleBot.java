@@ -19,6 +19,7 @@ import java.util.Random;
 /* A list of everyone to ever work on the bot and when they first started working on it:
  * Alexander Hill (March 10, 2021)
  * Anne Applin (December 29, 2020)
+ * Coley Hatt (Janurary 16, 2023)
  */
 
 /**
@@ -52,10 +53,10 @@ public class RoleBot {
 		User user = event.getMessageAuthor().asUser().get();
 		
 		// Iterate over every argument and check if it's a valid role
-		for (String arg : argList) {
-			if (roles.containsKey(arg)) {
+		for (String arg.toUpperCase() : argList) {
+			if (roles.containsKey(arg.toUpperCase())) {
 				// If it is, add the role to the person who requested it.
-				Role role = api.getRoleById(roles.get(arg)).get();
+				Role role = api.getRoleById(roles.get(arg.toUpperCase())).get();
 				role.addUser(user);
 				added++;
 			}
@@ -89,10 +90,10 @@ public class RoleBot {
 		User user = event.getMessageAuthor().asUser().get();
 
 		// Iterate over every argument to check if it's a valid role
-		for (String arg : argList) {
-			if (roles.containsKey(arg)) {
+		for (String arg.toUpperCase() : argList) {
+			if (roles.containsKey(arg.toUpperCase())) {
 				// If it is, remove the role from the person who made the request.
-				Role role = api.getRoleById(roles.get(arg)).get();
+				Role role = api.getRoleById(roles.get(arg.toUpperCase())).get();
 				role.removeUser(user);
 				removed++;
 			}
