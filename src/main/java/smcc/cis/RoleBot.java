@@ -19,6 +19,7 @@ import java.util.Random;
 /* A list of everyone to ever work on the bot and when they first started working on it:
  * Alexander Hill (March 10, 2021)
  * Anne Applin (December 29, 2020)
+ * Coley Hatt (Janurary 16, 2023)
  */
 
 /**
